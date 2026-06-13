@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORBIX 1.0 — NeoMap Explorer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ══ SIDEBAR GAUCHE ══ -->
+  <aside id="sidebar-left">
+    <div class="brand">
+      <span class="brand-logo">🌐</span>
+      <div>
+        <div class="brand-name">ORBIX <span class="version">1.0</span></div>
+        <div class="brand-sub">NeoMap Explorer</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-label"><i class="fa fa-magnifying-glass"></i> Recherche</label>
+      <div class="input-row">
+        <input type="text" id="cityInput" placeholder="Entrez une ville..." autocomplete="off" />
+        <button id="searchBtn" class="btn-icon" title="Rechercher"><i class="fa fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="section" id="cityInfoSection" style="display:none">
+      <div id="cityInfo"></div>
+    </div>
+
+    <div class="section">
+      <label class="section-label"><i class="fa fa-clock-rotate-left"></i> Récents</label>
+      <div id="historyList"><p class="muted">Aucune ville consultée.</p></div>
+    </div>
+  </aside>
+
+  <!-- ══ CARTE ══ -->
+  <div id="map"></div>
+
+  <!-- ══ SIDEBAR DROITE ══ -->
+  <aside id="sidebar-right">
+    <div class="section">
+      <label class="section-label"><i class="fa fa-layer-group"></i> Fond de carte</label>
+      <select id="mapType">
+        <option value="streets">🛣️ Routes (OSM)</option>
+        <option value="satellite">🛰️ Satellite</option>
+        <option value="topo">🏔️ Topographie</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label class="section-label"><i class="fa fa-location-crosshairs"></i> Localisation</label>
+      <button id="locateBtn" class="btn-full"><i class="fa fa-crosshairs"></i> Me localiser</button>
+    </div>
+
+    <div class="section">
+      <label class="section-label"><i class="fa fa-route"></i> Itinéraire</label>
+      <input type="text" id="routeFrom" placeholder="🅐 Départ..." />
+      <input type="text" id="routeTo" placeholder="🅑 Arrivée..." style="margin-top:8px" />
+      <button id="routeBtn" class="btn-full" style="margin-top:8px"><i class="fa fa-diamond-turn-right"></i> Calculer</button>
+      <button id="clearRouteBtn" class="btn-full btn-outline" style="margin-top:6px"><i class="fa fa-xmark"></i> Supprimer</button>
+      <div id="routeResult"></div>
+    </div>
+
+    <div class="section">
+      <label class="section-label"><i class="fa fa-cloud-sun"></i> Météo</label>
+      <div id="meteoBox"><p class="muted">Recherchez une ville pour voir la météo.</p></div>
+    </div>
+
+    <div class="section">
+      <label class="section-label"><i class="fa fa-map-pin"></i> Marqueurs</label>
+      <p class="muted hint">Clic gauche sur la carte pour ajouter.<br>Clic droit sur un marqueur pour le retirer.</p>
+      <div id="markerList"></div>
+      <button id="clearMarkersBtn" class="btn-full btn-outline" style="margin-top:8px"><i class="fa fa-trash"></i> Tout effacer</button>
+    </div>
+  </aside>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <script src="js/app.js"></script>
+</body>
+</html>

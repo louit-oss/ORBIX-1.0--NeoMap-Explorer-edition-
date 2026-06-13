@@ -1,0 +1,375 @@
+/* ═══════════════════════════════════════
+   ORBIX 1.0 — NeoMap Explorer
+   Palette : deep navy + cyan neon
+   ═══════════════════════════════════════ */
+
+:root {
+  --bg-deep:    #050810;
+  --bg-panel:   #080d1a;
+  --bg-card:    #0d1426;
+  --bg-hover:   #111d35;
+  --border:     #0d2040;
+  --border-glow:#0a3a7a;
+  --cyan:       #00f0ff;
+  --cyan-dim:   rgba(0, 240, 255, 0.12);
+  --cyan-glow:  rgba(0, 240, 255, 0.4);
+  --accent2:    #2979ff;
+  --text:       #c8d8f0;
+  --text-dim:   #4a6080;
+  --text-muted: #2a3f5a;
+  --danger:     #ff3b5c;
+  --success:    #00e5a0;
+  --r:          7px;
+  --transition: 0.18s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Scrollbars ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-glow); border-radius: 4px; }
+
+/* ══ SIDEBARS ══ */
+#sidebar-left, #sidebar-right {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  border-color: var(--border-glow);
+}
+
+#sidebar-left  { border-right: 1px solid var(--border-glow); }
+#sidebar-right { border-left:  1px solid var(--border-glow); }
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid var(--border-glow);
+  background: linear-gradient(180deg, rgba(0,240,255,0.05) 0%, transparent 100%);
+}
+
+.brand-logo { font-size: 26px; }
+
+.brand-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.version {
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan-glow);
+  animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+  from { text-shadow: 0 0 6px var(--cyan); }
+  to   { text-shadow: 0 0 20px var(--cyan), 0 0 40px rgba(0,240,255,0.3); }
+}
+
+.brand-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Sections */
+.section {
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.section-label i { color: var(--cyan); font-size: 11px; }
+
+/* ── Inputs ── */
+input, select {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  padding: 9px 11px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input:focus, select:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 2px var(--cyan-dim), 0 0 12px rgba(0,240,255,0.15);
+}
+
+input::placeholder { color: var(--text-muted); }
+
+.input-row {
+  display: flex;
+  gap: 6px;
+}
+
+.input-row input { flex: 1; }
+
+/* ── Buttons ── */
+.btn-icon {
+  background: var(--cyan);
+  border: none;
+  color: #000;
+  border-radius: var(--r);
+  padding: 9px 13px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.btn-icon:hover {
+  background: #fff;
+  box-shadow: 0 0 16px var(--cyan-glow);
+}
+
+.btn-full {
+  width: 100%;
+  background: var(--accent2);
+  border: none;
+  color: #fff;
+  border-radius: var(--r);
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all var(--transition);
+}
+
+.btn-full:hover {
+  background: #1a5fd1;
+  box-shadow: 0 0 14px rgba(41,121,255,0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  color: var(--text-dim);
+}
+
+.btn-outline:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(255,59,92,0.06);
+  box-shadow: none;
+}
+
+/* ── Map ── */
+#map { flex: 1; height: 100%; z-index: 1; }
+
+/* ── Muted / hint ── */
+.muted {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.hint { margin-bottom: 8px; }
+
+/* ── History ── */
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--r);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-dim);
+  transition: all var(--transition);
+  border: 1px solid transparent;
+}
+
+.history-item:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-glow);
+}
+
+.history-item i { color: var(--cyan); font-size: 10px; }
+
+/* ── City Info ── */
+#cityInfo h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px var(--cyan-glow);
+}
+
+#cityInfo img {
+  width: 100%;
+  border-radius: var(--r);
+  border: 1px solid var(--border-glow);
+  margin: 8px 0;
+  box-shadow: 0 0 10px rgba(0,240,255,0.1);
+}
+
+#cityInfo p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.badge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--r);
+  padding: 7px 9px;
+  font-size: 11px;
+}
+
+.badge .b-label { color: var(--text-muted); font-size: 10px; margin-bottom: 2px; }
+.badge .b-value { color: var(--cyan); font-weight: 600; }
+
+.source-note {
+  font-size: 10px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+/* ── Météo ── */
+.meteo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--r);
+  padding: 12px;
+}
+
+.meteo-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.meteo-emoji { font-size: 32px; }
+
+.meteo-temp {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px;
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.meteo-desc { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+
+.meteo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.meteo-stat {
+  background: var(--bg-panel);
+  border-radius: var(--r);
+  padding: 7px 9px;
+  font-size: 11px;
+}
+
+.meteo-stat .ms-label { color: var(--text-muted); font-size: 10px; }
+.meteo-stat .ms-value { color: var(--text); font-weight: 500; margin-top: 1px; }
+
+/* ── Route result ── */
+#routeResult {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--r);
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+#routeResult.visible { display: block; }
+#routeResult strong { color: var(--cyan); }
+
+/* ── Markers ── */
+.marker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--r);
+  font-size: 11px;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin-top: 5px;
+}
+
+.dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Leaflet overrides ── */
+.leaflet-container { background: #080d1a; }
+
+.leaflet-routing-container {
+  background: var(--bg-card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border-glow) !important;
+  border-radius: var(--r) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  max-width: 220px !important;
+}
+
+.leaflet-routing-container h2,
+.leaflet-routing-container h3 { color: var(--cyan) !important; font-size: 12px !important; }
